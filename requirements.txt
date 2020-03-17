@@ -1,0 +1,8 @@
+Flask==1.1.1
+gunicorn==20.0.4
+pymessenger==0.0.7.0
+pytz==2019.2
+requests==2.21.0
+requests-toolbelt==0.9.1
+requests-unixsocket==0.1.5
+selenium==3.141.0
