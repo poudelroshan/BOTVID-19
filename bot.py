@@ -5,7 +5,7 @@ import scrape
 
 app = Flask(__name__)
 ACCESS_TOKEN = 'EAAC2IRS5gxsBADd9mvyxHr6dJuPiGaPZA55tVNvxPIstakQc8GD0h6jfIeIcwZBeEwFgoPzh0eTE90xYIVrlaPUFB4pdWAlWtYjtqBATcsLbKiLYnQbpRV59w3YY6wdlWi5v72DcQ2YaiIr65CNWX1t1OlZAJgdsiqP0rGDTAZDZD'
-VERIFY_TOKEN = 'VERIFY_TOKEN'
+VERIFY_TOKEN = 'thisistherandomlytypedverificationtoken!'
 bot = Bot(ACCESS_TOKEN)
 
 #Matches VERIFY_TOKEN with Verification token provided to Fb for web Hook
@@ -26,7 +26,7 @@ def get_message():
     prin = scrape.corona()
     return prin
 
-
+@app.route('/webhook', methods = ['POST'])
 @app.route('/', methods = ['GET', 'POST'])
 def receive_message():
     #If there is a GET request at https://somewebsite.com/
