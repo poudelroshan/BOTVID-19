@@ -1,7 +1,8 @@
 #from time import gmtime, strftime
-import datetime
+import datetime, os
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
+
 
 
 URL = "https://coronamap.site/"
@@ -12,8 +13,12 @@ def output(confirmed, recovered, death, time):
 
 def corona():
     options = Options()
+    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     options.headless = True
-    driver = webdriver.Firefox(options=options)
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path = os.environ.get("CHROMEDRIVER_PATH"), chrome_options = options)
+    
     driver.get(URL)
     english_lang = driver.find_element_by_class_name("english-btn")
     english_lang.click()
