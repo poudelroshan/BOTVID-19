@@ -26,7 +26,6 @@ def get_message():
     prin = scrape.corona()
     return prin
 
-@app.route('/webhook', methods = ['POST'])
 @app.route('/', methods = ['GET', 'POST'])
 def receive_message():
     #If there is a GET request at https://somewebsite.com/
