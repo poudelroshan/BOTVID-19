@@ -1,4 +1,4 @@
-from flask import flask, request
+from flask import Flask, request
 import random
 from pymessenger.bot import Bot
 import scrape
