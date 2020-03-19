@@ -26,7 +26,7 @@ def get_message():
     prin = scrape.corona()
     return prin
 
-@my_bot.route('/', methods = ['GET', 'POST'])
+@bot.route('/', methods = ['GET', 'POST'])
 def receive_message():
     #If there is a GET request at https://somewebsite.com/
     #And if it's a request from facebook, it will be of the form:
