@@ -5,7 +5,7 @@ import scrape
 
 test = Flask(__name__)
 
-@app.route('/', methods = ['GET', 'POST'])
+@test.route('/', methods = ['GET', 'POST'])
 def index():
     return "<h1> This test page works! </h1>"
 
