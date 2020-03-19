@@ -1,1 +1,1 @@
-web: python3 test.py
+web: gunicorn -b :$PORT test:test
