@@ -19,7 +19,7 @@ def verify_fb_token(token_sent):
 
 
 def send_message(recipient_id, response):
-    bot.send_text_message(recipient_id, response)
+    my_bot.send_text_message(recipient_id, response)
     return "Message Sent!"
     
 def get_message():
