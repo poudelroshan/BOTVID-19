@@ -1,5 +1,4 @@
-from flask import Flask, request
-import random
+from flask import Flask, request, render_template
 from pymessenger.bot import Bot
 import scrape
 
@@ -26,7 +25,7 @@ def get_message():
     prin = scrape.corona()
     return prin
 
-@bot.route('/', methods = ['GET', 'POST'])
+@bot.route('/webhook', methods = ['GET', 'POST'])
 def receive_message():
     #If there is a GET request at https://somewebsite.com/
     #And if it's a request from facebook, it will be of the form:
@@ -47,9 +46,16 @@ def receive_message():
             send_message(user_id, response_to_user)
     return "Message Processed"
 
+@bot.route('/privacy-policy')
+def privacy():
+    return render_template("privacy-policy.html")
+
+@bot.route('/')
+def index():
+    return "<h1> This page for Corona Bot, Korea works!!</h1>"
 
 if __name__=="__main__":
-    bot.run(threaded=True)
+    bot.run(threaded=True, debug=True)
     
 
 
