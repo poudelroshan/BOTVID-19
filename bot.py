@@ -38,14 +38,13 @@ def receive_message():
     #In this case, just receive the message from user and respond
     else:
         output = request.get_json()
-        print(output)
-        """
-        message = output['entry'][0]['changes'][0]['value']['message']
-        user_id = output['entry'][0]['changes'][0]['value']['from']['id']
+
+        message = output['entry'][0]['messaging'][0]['message']['text']
+        message = output['entry'][0]['messaging'][0]['message']['text']
         
-        if message == "Would you rather fight 1 horse-sized duck or 100 duck-sized horses?": #Send Corona Updates:
+        if message.lower() != "stop":
             response_to_user = get_message()
-            send_message(user_id, response_to_user)"""
+            send_message(user_id, response_to_user)
     return "Message Processed"
 
 
