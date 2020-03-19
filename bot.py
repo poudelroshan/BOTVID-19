@@ -4,7 +4,7 @@ from pymessenger.bot import Bot
 import scrape
 
 bot = Flask(__name__)
-ACCESS_TOKEN = 'EAAC2IRS5gxsBADd9mvyxHr6dJuPiGaPZA55tVNvxPIstakQc8GD0h6jfIeIcwZBeEwFgoPzh0eTE90xYIVrlaPUFB4pdWAlWtYjtqBATcsLbKiLYnQbpRV59w3YY6wdlWi5v72DcQ2YaiIr65CNWX1t1OlZAJgdsiqP0rGDTAZDZD'
+ACCESS_TOKEN = 'EAAC2IRS5gxsBALVHI2sJqMXxZAPxOiY3S09OC9nBJfSSdpi5dfRa4QKOF8xKu1nnnHQS6DV0VqqOVLAZAIOF4YXxOFhz9uc1O31sowh3cZBCo0TnONyyOdZA0lQFvjLZCGRPsqe1nXgpZCUxR5eUmuEK6tWvksBAHVAgd5bb5ugwZDZD'
 VERIFY_TOKEN = 'thisistherandomlytypedverificationtoken!'
 my_bot = Bot(ACCESS_TOKEN)
 
@@ -38,12 +38,14 @@ def receive_message():
     #In this case, just receive the message from user and respond
     else:
         output = request.get_json()
+        print(output)
+        """
         message = output['entry'][0]['changes'][0]['value']['message']
         user_id = output['entry'][0]['changes'][0]['value']['from']['id']
         
         if message == "Would you rather fight 1 horse-sized duck or 100 duck-sized horses?": #Send Corona Updates:
             response_to_user = get_message()
-            send_message(user_id, response_to_user)
+            send_message(user_id, response_to_user)"""
     return "Message Processed"
 
 
