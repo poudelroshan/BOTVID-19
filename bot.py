@@ -40,7 +40,7 @@ def receive_message():
         output = request.get_json()
 
         message = output['entry'][0]['messaging'][0]['message']['text']
-        message = output['entry'][0]['messaging'][0]['message']['text']
+        user_id = output['entry'][0]['messaging'][0]['sender']['id']
         
         if message.lower() != "stop":
             response_to_user = get_message()
