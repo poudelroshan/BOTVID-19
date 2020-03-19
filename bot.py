@@ -50,7 +50,7 @@ def receive_message():
 
 
 if __name__=="__main__":
-    my_bot.run(threaded=True)
+    bot.run(threaded=True)
     
 
 
