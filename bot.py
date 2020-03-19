@@ -6,7 +6,7 @@ import scrape
 bot = Flask(__name__)
 ACCESS_TOKEN = 'EAAC2IRS5gxsBADd9mvyxHr6dJuPiGaPZA55tVNvxPIstakQc8GD0h6jfIeIcwZBeEwFgoPzh0eTE90xYIVrlaPUFB4pdWAlWtYjtqBATcsLbKiLYnQbpRV59w3YY6wdlWi5v72DcQ2YaiIr65CNWX1t1OlZAJgdsiqP0rGDTAZDZD'
 VERIFY_TOKEN = 'thisistherandomlytypedverificationtoken!'
-bot = Bot(ACCESS_TOKEN)
+my_bot = Bot(ACCESS_TOKEN)
 
 #Matches VERIFY_TOKEN with Verification token provided to Fb for web Hook
 #This ensures that the bot only responds to requests from messenger
@@ -26,7 +26,7 @@ def get_message():
     prin = scrape.corona()
     return prin
 
-@bot.route('/', methods = ['GET', 'POST'])
+@my_bot.route('/', methods = ['GET', 'POST'])
 def receive_message():
     #If there is a GET request at https://somewebsite.com/
     #And if it's a request from facebook, it will be of the form:
@@ -50,7 +50,7 @@ def receive_message():
 
 
 if __name__=="__main__":
-    bot.run(threaded=True)
+    my_bot.run(threaded=True)
     
 
 
