@@ -3,7 +3,7 @@ from pymessenger.bot import Bot
 import scrape
 
 bot = Flask(__name__)
-ACCESS_TOKEN = 'EAAC2IRS5gxsBALVHI2sJqMXxZAPxOiY3S09OC9nBJfSSdpi5dfRa4QKOF8xKu1nnnHQS6DV0VqqOVLAZAIOF4YXxOFhz9uc1O31sowh3cZBCo0TnONyyOdZA0lQFvjLZCGRPsqe1nXgpZCUxR5eUmuEK6tWvksBAHVAgd5bb5ugwZDZD'
+ACCESS_TOKEN = 'EAAC2IRS5gxsBAJzFpA0Wz3O8PHN67ZBNw22nSikeOqXHB6kW8OSuJnnxCR1ZCDlFexQwoFQ4mFu9Lo2l90KGtUXZAX8kS3kZCQCTu3m0GQZAo0Xm9vIonHRXjFH7EDbUz1wHZCuccS1rdnfdXwluZAg84OED1yYPt0G30uc8IvCzgZDZD'
 VERIFY_TOKEN = 'thisistherandomlytypedverificationtoken!'
 my_bot = Bot(ACCESS_TOKEN)
 
