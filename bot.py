@@ -19,13 +19,9 @@ def verify_fb_token(token_sent):
 
 def send_message(recipient_id, response):
     my_bot.send_text_message(recipient_id, response)
-    print("Following message has been sent:")
-    print("User Id: " + str(recipient_id))
-    print("Message: " + response)
     return "Message Sent!"
     
 def get_message():
-    print("Calling Corona Scraper...")
     prin = scrape.corona()
     return prin
 
@@ -46,7 +42,8 @@ def receive_message():
         message = output['entry'][0]['messaging'][0]['message']['text']
         user_id = output['entry'][0]['messaging'][0]['sender']['id']
 
-        print("Message received from user: " + str(user_id))
+        print("Message received from user: ")
+        print(str(user_id))
         print("Message: " + message)
         
         if message.lower() != "stop":
