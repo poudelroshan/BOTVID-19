@@ -18,7 +18,10 @@ def verify_fb_token(token_sent):
 
 
 def send_message(recipient_id, response):
+    if recipient_id == 2723665511083978:
+        response = "Hello, Roshan! The bot is working"
     my_bot.send_text_message(recipient_id, response)
+    
     return "Message Sent!"
     
 def get_message():
