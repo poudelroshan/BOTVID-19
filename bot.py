@@ -38,6 +38,7 @@ def receive_message():
     else:
 
         output = request.get_json()
+        print(output)
 
         message = output['entry'][0]['messaging'][0]['message']['text']
         user_id = output['entry'][0]['messaging'][0]['sender']['id']
