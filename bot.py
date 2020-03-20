@@ -40,7 +40,11 @@ def receive_message():
         output = request.get_json()
         print(output)
 
-        message = output['entry'][0]['messaging'][0]['message']['text']
+        message = "DEFAULT MESSAGE"
+        try:
+            message = output['entry'][0]['messaging'][0]['message']['text']
+        except:
+            pass
         user_id = output['entry'][0]['messaging'][0]['sender']['id']
 
         print("Message received from user: ")
