@@ -1,41 +1,29 @@
 from flask import Flask, request, render_template
 from pymessenger.bot import Bot
-import scrape
+import scrape, authenticate
 
-bot = Flask(__name__)
-ACCESS_TOKEN = 'EAAC2IRS5gxsBAJzFpA0Wz3O8PHN67ZBNw22nSikeOqXHB6kW8OSuJnnxCR1ZCDlFexQwoFQ4mFu9Lo2l90KGtUXZAX8kS3kZCQCTu3m0GQZAo0Xm9vIonHRXjFH7EDbUz1wHZCuccS1rdnfdXwluZAg84OED1yYPt0G30uc8IvCzgZDZD'
-VERIFY_TOKEN = 'thisistherandomlytypedverificationtoken!'
-my_bot = Bot(ACCESS_TOKEN)
-
-#Matches VERIFY_TOKEN with Verification token provided to Fb for web Hook
-#This ensures that the bot only responds to requests from messenger
-def verify_fb_token(token_sent):
-    if (token_sent == VERIFY_TOKEN):
-    #verification token matches, return expected message
-        return request.args.get("hub.challenge")
-    #Verification token doesn't match
-    return ("<h1>Invalid verification token<h1>") 
+app = Flask(__name__)
+bot = authenticate.verify_bot_access()
 
 
 def send_message(recipient_id, response):
-    if recipient_id == '2723665511083978':
+    if authenticate.admin(recipient_id):
         response = "Hello, Roshan! The bot is working"
     my_bot.send_text_message(recipient_id, response)
-    
     return "Message Sent!"
     
 def get_message():
     prin = scrape.corona()
     return prin
 
-@bot.route('/webhook', methods = ['GET', 'POST'])
+@app.route('/webhook', methods = ['GET', 'POST'])
 def receive_message():
     #If there is a GET request at https://somewebsite.com/
     #And if it's a request from facebook, it will be of the form:
     #https://somewebsite.com/?hub.mode=subscribe&hub.challenge=906893502&hub.verify_token=VERIFY_TOKEN
     if request.method == 'GET':
         token_sent = request.args.get("hub.verify_token")
-        return verify_fb_token(token_sent)
+        return authenticate.verify_fb_token(token_sent, request)
     #If the request was not GET, it's POST
     #In this case, just receive the message from user and respond
     else:
@@ -59,16 +47,16 @@ def receive_message():
             send_message(user_id, response_to_user)
     return "Message Processed"
 
-@bot.route('/privacy-policy')
+@app.route('/privacy-policy')
 def privacy():
     return render_template("privacy_policy.html")
 
-@bot.route('/')
+@app.route('/')
 def index():
     return "<h1> This page for Corona Bot, Korea works!!</h1>"
 
 if __name__=="__main__":
-    bot.run(threaded=True, debug=True)
+    app.run(threaded=True, debug=True)
     
 
 
