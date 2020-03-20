@@ -14,14 +14,18 @@ def verify_fb_token(token_sent):
     #verification token matches, return expected message
         return request.args.get("hub.challenge")
     #Verification token doesn't match
-    return ("Invalid verification token") 
+    return ("<h1>Invalid verification token<h1>") 
 
 
 def send_message(recipient_id, response):
     my_bot.send_text_message(recipient_id, response)
+    print("Following message has been sent:")
+    print("User Id: " + str(recipient_id))
+    print("Message: " + response)
     return "Message Sent!"
     
 def get_message():
+    print("Calling Corona Scraper...")
     prin = scrape.corona()
     return prin
 
@@ -36,10 +40,14 @@ def receive_message():
     #If the request was not GET, it's POST
     #In this case, just receive the message from user and respond
     else:
+
         output = request.get_json()
 
         message = output['entry'][0]['messaging'][0]['message']['text']
         user_id = output['entry'][0]['messaging'][0]['sender']['id']
+
+        print("Message received from user: " + str(user_id))
+        print("Message: " + message)
         
         if message.lower() != "stop":
             response_to_user = get_message()
