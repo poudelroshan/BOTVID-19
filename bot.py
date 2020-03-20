@@ -23,6 +23,7 @@ def receive_message():
     #https://somewebsite.com/?hub.mode=subscribe&hub.challenge=906893502&hub.verify_token=VERIFY_TOKEN
     if request.method == 'GET':
         token_sent = request.args.get("hub.verify_token")
+        print("Trying to authenticate")
         return authenticate.verify_fb_token(token_sent, request)
     #If the request was not GET, it's POST
     #In this case, just receive the message from user and respond
