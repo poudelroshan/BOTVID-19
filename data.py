@@ -27,4 +27,3 @@ def get_total_users():
     cursor.execute("SELECT * FROM users")
     return len(cursor.fetchall())
 
-

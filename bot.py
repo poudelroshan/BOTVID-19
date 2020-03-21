@@ -23,7 +23,6 @@ def receive_message():
     #And if it's a request from facebook, it will be of the form:
     #https://somewebsite.com/?hub.mode=subscribe&hub.challenge=906893502&hub.verify_token=VERIFY_TOKEN
     if request.method == 'GET':
-        send_message("2723665511083978", "I can send a message")
         return authenticate.verify_fb_token(request)
     #If the request was not GET, it's POST
     #In this case, just receive the message from user and respond
@@ -37,7 +36,7 @@ def receive_message():
         user_id = int(output['entry'][0]['messaging'][0]['sender']['id'])
 
         if message == "DEFAULT MESSAGE":
-            send_message(user_id, "Sorry! I cannot currently handle non-text messages :(")
+            send_message(user_id, "Sorry! I cannot currently handle non-text messages :|")
         elif message == "subscribe":
             subscribe(user_id)
         elif message == "unsubscribe":
@@ -46,7 +45,7 @@ def receive_message():
             response = get_message(user_id, message)
             send_message(user_id, message)
         else: #Unsupported text message
-            send_message(user_id, "Sorry! I am not smart enough to understand what you said")
+            send_message(user_id, "Sorry! I am a dumb bot, and I didn't what you just said.")
     return "Message Processed"
 
 def is_user_subscribed(user_id):
@@ -56,16 +55,24 @@ def is_user_subscribed(user_id):
 def subscribe(user_id):
     if not is_user_subscribed(user_id):
         data.add_user(user_id)
-        send_message(user_id, "Success! You will now receive periodic text messages from me :)")
+        send_message(user_id, "Success! I will now send you periodic messages :)")
+        print("User added to the database!")
+        print("Total users in database: " , data.get_total_users())
     else:
         send_message(user_id, "You have already subscribed to our free services!!")
+        print("User already in the database!")
+        print("Total users in database: " , data.get_total_users())
         
 def unsubscribe(user_id):
     if not is_user_subscribed(user_id):
-        send_message(user_id, "Sorry! You have not yet subscribed to our free services!!")
+        send_message(user_id, "Sorry! You have not yet subscribed to receive my free updates!!")
+        send_message(user_id, "send 'subscribe' to keep updated about the COVID-19 situation")
     else:
         data.remove_user(user_id)
-        send_message(user_id, "Success! You have unsubscribed from my periodic messages")
+        send_message(user_id, "Sorry to see you go :(")
+        print("User removed from the database!")
+        print("Total users in database: " , data.get_total_users())
+
         
 
 @app.route('/privacy-policy')
@@ -74,7 +81,7 @@ def privacy():
 
 @app.route('/')
 def index():
-    return "<h1> This page for Corona Bot, Korea works!!</h1>"
+    return "<h1> BOTVID-19 is doing his job!!</h1>"
 
 if __name__=="__main__":
     app.run(threaded=True, debug=True)
