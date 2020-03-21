@@ -42,8 +42,9 @@ def receive_message():
         elif message == "unsubscribe":
             unsubscribe(user_id)
         elif message == "update":
+            send_message(user_id, "Collecting information from the Internet.....")
             response = get_message(user_id, message)
-            send_message(user_id, message)
+            send_message(user_id, response)
         else: #Unsupported text message
             send_message(user_id, "Sorry! I am a dumb bot, and I didn't what you just said.")
     return "Message Processed"
