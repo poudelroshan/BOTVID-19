@@ -20,7 +20,7 @@ def verify_fb_token(request):
 
 def is_admin(user_id):
     if user_id == "2723665511083978":
-        return true
-    return false
+        return True
+    return False
 
 
