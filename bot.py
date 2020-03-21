@@ -10,8 +10,8 @@ def send_message(recipient_id, response):
     bot.send_text_message(recipient_id, response)
     return "Message Sent!"
     
-def get_message(recipient_id):
-    if authenticate.is_admin(recipient_id):
+def get_message(recipient_id, message):
+    if authenticate.is_admin(recipient_id, message):
         response = "Hello, Roshan! The bot is working"
     else:
         response = scrape.corona()
@@ -39,12 +39,8 @@ def receive_message():
             pass
         user_id = output['entry'][0]['messaging'][0]['sender']['id']
 
-        print("Message received from user: ")
-        print(str(user_id))
-        print("Message: " + message)
-        
         if message.lower() != "stop":
-            response_to_user = get_message(user_id)
+            response_to_user = get_message(user_id, message)
             send_message(user_id, response_to_user)
     return "Message Processed"
 

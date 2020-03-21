@@ -18,8 +18,8 @@ def verify_fb_token(request):
     #Verification token doesn't match
     return ("<h1>Invalid verification token<h1>")
 
-def is_admin(user_id):
-    if user_id == "2723665511083978":
+def is_admin(user_id, message):
+    if user_id == "2723665511083978" and message.lower() == "sudo":
         return True
     return False
 
