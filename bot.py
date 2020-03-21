@@ -7,14 +7,16 @@ bot = authenticate.verify_bot_access()
 
 
 def send_message(recipient_id, response):
-    if authenticate.admin(recipient_id):
-        response = "Hello, Roshan! The bot is working"
+    
     my_bot.send_text_message(recipient_id, response)
     return "Message Sent!"
     
-def get_message():
-    prin = scrape.corona()
-    return prin
+def get_message(recipient_id):
+    if authenticate.is_admin(recipient_id):
+        response = "Hello, Roshan! The bot is working"
+    else:
+        response = scrape.corona()
+    return response
 
 @app.route('/webhook', methods = ['GET', 'POST'])
 def receive_message():
@@ -22,9 +24,8 @@ def receive_message():
     #And if it's a request from facebook, it will be of the form:
     #https://somewebsite.com/?hub.mode=subscribe&hub.challenge=906893502&hub.verify_token=VERIFY_TOKEN
     if request.method == 'GET':
-        token_sent = request.args.get("hub.verify_token")
         print("Trying to authenticate")
-        return authenticate.verify_fb_token(token_sent, request)
+        return authenticate.verify_fb_token(request)
     #If the request was not GET, it's POST
     #In this case, just receive the message from user and respond
     else:
@@ -33,9 +34,9 @@ def receive_message():
         print(output)
 
         message = "DEFAULT MESSAGE"
-        try:
+        try: #grab the text messages only
             message = output['entry'][0]['messaging'][0]['message']['text']
-        except:
+        except: #If there is emoji or pictures, ignore it
             pass
         user_id = output['entry'][0]['messaging'][0]['sender']['id']
 
@@ -44,7 +45,7 @@ def receive_message():
         print("Message: " + message)
         
         if message.lower() != "stop":
-            response_to_user = get_message()
+            response_to_user = get_message(user_id)
             send_message(user_id, response_to_user)
     return "Message Processed"
 

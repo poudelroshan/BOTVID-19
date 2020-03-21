@@ -10,14 +10,15 @@ def verify_bot_access():
     return Bot(ACCESS_TOKEN)
 
 #Matches VERIFY_TOKEN with Verification token provided to Fb for web Hook                                                                            #This ensures that the bot only responds to requests from messenger
-def verify_fb_token(token_sent, request):
+def verify_fb_token(request):
+    token_sent = request.args.get("hub.verify_token")
     if (token_sent == VERIFY_TOKEN):
     #verification token matches, return expected message
         return request.args.get("hub.challenge")
     #Verification token doesn't match
     return ("<h1>Invalid verification token<h1>")
 
-def admin(user_id):
+def is_admin(user_id):
     if user_id == "2723665511083978":
         return true
     return false
