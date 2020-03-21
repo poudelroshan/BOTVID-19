@@ -7,8 +7,7 @@ bot = authenticate.verify_bot_access()
 
 
 def send_message(recipient_id, response):
-    
-    my_bot.send_text_message(recipient_id, response)
+    bot.send_text_message(recipient_id, response)
     return "Message Sent!"
     
 def get_message(recipient_id):
