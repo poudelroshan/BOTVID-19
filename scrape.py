@@ -1,5 +1,6 @@
 #from time import gmtime, strftime
 import datetime, os
+from tabulate import tabulate
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -9,8 +10,8 @@ URL = "https://coronamap.site/"
 DATABASE = ["time&date", 0, 0, 0] #[time, confirmed, death, recovered]
 
 def output(confirmed, recovered, death, time):
-    return "Welcome to Corona Bot by ROSHAN POUDEL\n" + "Current Local time: " + time + "\n" + "Confirmed Cases: " + confirmed.text + "\n" + "Deaths: " + death.text + "\n" + "Recovered: " + recovered.text
-
+    return tabulate([["Cases", "Deaths", "Recoveries"], [confirmed.text,death.text,recovered.text]], headers="firstrow"))
+    
 def corona():
     options = Options()
     options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
