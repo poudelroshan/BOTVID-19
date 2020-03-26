@@ -10,7 +10,7 @@ URL = "https://coronamap.site/"
 DATABASE = ["time&date", 0, 0, 0] #[time, confirmed, death, recovered]
 
 def output(confirmed, recovered, death, time):
-    return tabulate([["Cases", "Deaths", "Recoveries"], [confirmed.text,death.text,recovered.text]], headers="firstrow"))
+    return tabulate([["Cases", "Deaths", "Recoveries"], [confirmed.text,death.text,recovered.text]], headers="firstrow")
     
 def corona():
     options = Options()
