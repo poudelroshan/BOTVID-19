@@ -8,13 +8,14 @@ bot = authenticate.verify_bot_access()
 
 def send_message(recipient_id, response):
     bot.send_text_message(recipient_id, response)
-    return "Message Sent!"
+    print("Message Sent!")
     
 def get_message(recipient_id, message):
     if authenticate.is_admin(recipient_id) and message.lower() == "sudo":
         response = "Hello, Roshan! The bot is working"
     else:
         response = database.get_data()
+        print(response)
     return response
 
 @app.route('/webhook', methods = ['GET', 'POST'])
@@ -42,12 +43,15 @@ def receive_message():
         elif message == "unsubscribe":
             unsubscribe(user_id)
         elif message == "update":
-            send_message(user_id, "Collecting information from the Internet.....")
+            send_message(user_id, "Collecting information from the Internet, please wait.....")
+            response = get_message(user_id, message)
+            send_message(user_id, response)
+        elif message == "sudo":
             response = get_message(user_id, message)
             send_message(user_id, response)
         else: #Unsupported text message
-            send_message(user_id, "Sorry! I am a dumb bot, and I didn't what you just said.")
-    return "Message Processed"
+            send_message(user_id, "Sorry! I am a dumb bot, and I didn't quite understand what you just said.")
+        print("Message Processed")
 
 def is_user_subscribed(user_id):
     return data.is_user_subscribed(user_id)
