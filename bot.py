@@ -14,7 +14,7 @@ def get_message(recipient_id, message):
     if authenticate.is_admin(recipient_id) and message.lower() == "sudo":
         response = "Hello, Roshan! The bot is working"
     else:
-        response = database.get_data()
+        response = database.get_tabulated_data()
         
     return response
 
