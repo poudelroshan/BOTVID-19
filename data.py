@@ -6,12 +6,12 @@ cursor = connection.cursor()
 def add_user(user_id, user_role="user"):
     with connection:
         cursor.execute("INSERT INTO users VALUES(?, ?)", (user_id, user_role))
-    return "User Added to Database"
+    print("User Added to Database")
 
 def remove_user(user__id):
     with connection:
         cursor.execute("DELETE FROM users WHERE user_id = ?", (user__id,))
-    return "User Removed from Database"
+    print("User Removed from Database")
 
 def is_user_subscribed(user__id):
     cursor.execute("SELECT * FROM users WHERE user_id=?", (user__id,))

@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from pymessenger.bot import Bot
-import scrape, authenticate, data
+import scrape, authenticate, data, database
 
 app = Flask(__name__)
 bot = authenticate.verify_bot_access()
@@ -14,7 +14,7 @@ def get_message(recipient_id, message):
     if authenticate.is_admin(recipient_id) and message.lower() == "sudo":
         response = "Hello, Roshan! The bot is working"
     else:
-        response = scrape.corona()
+        response = database.get_data()
     return response
 
 @app.route('/webhook', methods = ['GET', 'POST'])

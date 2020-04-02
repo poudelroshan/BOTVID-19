@@ -7,12 +7,11 @@ from selenium.webdriver.chrome.options import Options
 
 
 URL = "https://coronamap.site/"
-DATABASE = ["time&date", 0, 0, 0] #[time, confirmed, death, recovered]
+
 
 def output(confirmed, recovered, death, time):
-    return tabulate([["State", "Cases", "Deaths"], [confirmed.text,death.text,recovered.text],[confirmed.text,death.\
-                                                                                               text,recovered.text],[confirmed.text,death.\
-text,recovered.text]], headers="firstrow")
+    return tabulate([["State", "Cases", "Deaths"], [confirmed.text,death.text,recovered.text],
+                     [confirmed.text,death.text,recovered.text],[confirmed.text,death.text,recovered.text]], headers="firstrow")
     
 def corona():
     options = Options()
