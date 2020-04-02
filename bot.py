@@ -8,7 +8,7 @@ bot = authenticate.verify_bot_access()
 
 def send_message(recipient_id, response):
     bot.send_text_message(recipient_id, response)
-    print("Message Sent!")
+    return "Message Sent!"
     
 def get_message(recipient_id, message):
     if authenticate.is_admin(recipient_id) and message.lower() == "sudo":
@@ -51,7 +51,7 @@ def receive_message():
             send_message(user_id, response)
         else: #Unsupported text message
             send_message(user_id, "Sorry! I am a dumb bot, and I didn't quite understand what you just said.")
-        print("Message Processed")
+        return "Message Processed"
 
 def is_user_subscribed(user_id):
     return data.is_user_subscribed(user_id)
