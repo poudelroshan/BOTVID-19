@@ -15,13 +15,18 @@ connection = sql.connect("TABLE.db")
 cursor = connection.cursor()
 
 '''
+#ONLY USE FOR THE FIRST TIME TO CREATE THE DATABASE
 cursor.execute("""CREATE TABLE data_table(STATE text, ABBR text,PREV_CASES int, CURR_CASES int, PREV_DEATHS int, CURR_DEATHS int)""")
 connection.commit()
 '''
 
 def get_states():
     cursor.execute("SELECT state from data_table")
-    return cursor.fetchall()
+    untidy_list =  cursor.fetchall()
+    tidy_list = []
+    for items in untidy_list:
+        tidy_list.append(items[0])
+    return tidy_list
 
 def add_state_data(state_data):
     state = state_data[0]
@@ -60,4 +65,3 @@ def get_data():
     return to_send
 
     
-print(get_data())
