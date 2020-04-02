@@ -20,6 +20,22 @@ cursor.execute("""CREATE TABLE data_table(STATE text, ABBR text,PREV_CASES int, 
 connection.commit()
 '''
 
+def get_state_current_numbers(state):
+    data_list = get_clean_data()
+    for items in data_list:
+        if items[0] == state:
+            cases = items[3]
+            deaths = items[5]
+    return [cases, deaths]
+            
+
+def get_state_deaths(state):
+    return get_state_current_numbers(state)[1]
+
+def get_state_cases(state):
+    return get_state_current_numbers(state)[0]
+    
+    
 def get_states():
     cursor.execute("SELECT state from data_table")
     untidy_list =  cursor.fetchall()
@@ -49,15 +65,17 @@ def update_state_data(state_data):
     with connection:
         cursor.execute("UPDATE data_table SET PREV_CASES = {} CURR_CASES = {} PREV_DEATHS = {} CURR_DEATHS = {}".format(prev_cases, curr_cases, prev_deaths, curr_deaths))
     
-def print_database():
-    cursor.execute("SELECT * from data_table")
-    data_list = cursor.fetchall()
-    for items in data_list:
-        print(items)
+def get_clean_data(): #returns database without tabulate applied
+    with connection:
+        cursor.execute("SELECT * from data_table")
+        data_list = cursor.fetchall()
+    return data_list
+        
 
-def get_data():
-    cursor.execute("SELECT * from data_table")
-    data_list = cursor.fetchall()
+def get_tabulated_data():
+    with connection:
+        cursor.execute("SELECT * from data_table")
+        data_list = cursor.fetchall()
     list_for_table = [["State", "Cases", "Deaths"]]
     for items in data_list:
         list_for_table.append([items[1],items[3],items[5]])

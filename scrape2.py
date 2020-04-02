@@ -17,9 +17,6 @@ def corona():
         data_list.append([cols[0], cols[1], cols[3]])
     for state_data in data_list:
         update_database(state_data)
-    print("databases:::")
-    print(database.get_states())
-
         
                 
 def update_database(state_data):
@@ -35,20 +32,20 @@ def update_database(state_data):
         if (new_cases > prev_cases or new_deaths > prev_deaths):
             database.update_state_data(state_data)
             
-#    print("Data for " , state, " Updated")
+    print("Data for " , state, " Updated")
 
     
-def refined(state_data):
-    for numbers in state_data[1:]:
-        index = state_data.index(numbers) 
-        #Remove Commas from numbers
-        state_data[index] = numbers.replace(",", "") 
+def refined(state_data): #state_data = ['New York', '44,768', '']
+    for number in state_data[1:]:
+        index = state_data.index(number) 
+        #Remove Commas from number
+        state_data[index] = number.replace(",", "") 
         #Empty strings = number 0
-        if numbers == "": 
+        if number == "":
             state_data[index] = 0
         state_data[index] = int(state_data[index])
 
-        return state_data
+    return state_data
         
     
 if __name__ == "__main__":

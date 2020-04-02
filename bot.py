@@ -15,7 +15,7 @@ def get_message(recipient_id, message):
         response = "Hello, Roshan! The bot is working"
     else:
         response = database.get_data()
-        print(response)
+        
     return response
 
 @app.route('/webhook', methods = ['GET', 'POST'])
