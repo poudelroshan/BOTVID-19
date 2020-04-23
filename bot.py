@@ -59,7 +59,7 @@ def receive_message():
         elif message == "unsubscribe":
             unsubscribe(user_id)
         elif message == "update":
-            response = get_update()
+            response = get_message()
             send_message(user_id, response)
         # Allow for admins to check bot status using messenger
         elif message.split()[0] == "sudo" and authenticate.is_admin(user_id):
