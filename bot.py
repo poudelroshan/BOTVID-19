@@ -22,7 +22,7 @@ def get_message():
 def get_sudo_message(message):
     if message == "sudo gtu":
         # 1) "sudo gtu" -> get total numbers of users from database
-        response = user_state_database.get_total_users()
+        response = user_database.get_total_users()
     elif message == "sudo status":
         # 2) "sudo status" -> Is the bot working?
         response = "Hey, Roshan! BOTVID-19 is working great! :)"
@@ -72,20 +72,20 @@ def receive_message():
 
 # Check whether the user_id is stored in database    
 def is_user_subscribed(user_id):
-    return user_state_database.is_user_subscribed(user_id)
+    return user_database.is_user_subscribed(user_id)
 
 # Add user_id to the database
 def subscribe(user_id):
     if not is_user_subscribed(user_id):
-        user_state_database.add_user(user_id)
+        user_database.add_user(user_id)
         send_message(user_id, "Success! I will now send you periodic messages :)")
         # Realtime console output:
         print("User added to the database!") 
-        print("Total users in database: " , user_state_database.get_total_users())
+        print("Total users in database: " , user_database.get_total_users())
     else:
         send_message(user_id, "You are already a subscriber!")
         print("User already in the database!")
-        print("Total users in database: " , user_state_database.get_total_users())
+        print("Total users in database: " , user_database.get_total_users())
 
         
 # Remove user_id from the database
@@ -94,10 +94,10 @@ def unsubscribe(user_id):
         send_message(user_id, "Sorry! You are not a subscriber")
         send_message(user_id, "send me 'subscribe' to subscribe for notifications from me")
     else:
-        user_state_database.remove_user(user_id)
+        user_database.remove_user(user_id)
         send_message(user_id, "Sorry to see you go :(")
         print("User removed from the database!")
-        print("Total users in database: " , user_state_database.get_total_users())
+        print("Total users in database: " , user_database.get_total_users())
 
         
 # This is for privacy-policy        
