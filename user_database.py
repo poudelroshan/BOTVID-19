@@ -19,21 +19,20 @@ def remove_user(user__id):
         cursor.execute("DELETE FROM users WHERE user_id = ?", (user__id,))
     print("User Removed from Database")
 
+    
 def is_user_subscribed(user__id):
     cursor.execute("SELECT * FROM users WHERE user_id=?", (user__id,))
-    if len(cursor.fetchall()) == 1:
-        return True
-    return False
+    return len(cursor.fetchall() == 1)
 
+    
 def get_total_users():
     cursor.execute("SELECT * FROM users")
     return len(cursor.fetchall())
+
 
 def get_users():
     cursor.execute("SELECT user_id FROM users")
     a = cursor.fetchall()
     return [x[0] for x in a] 
 
-print("Total users: ", get_total_users())
-print("Users:")
-print(get_users())
+

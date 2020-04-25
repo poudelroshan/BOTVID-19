@@ -110,3 +110,13 @@ def get_tabulated_data():
     return to_send
 
     
+def get_all_state_data():
+    with connection:
+        cursor.execute("SELECT * from data_table")
+        data_list = cursor.fetchall()
+    list_for_table = [["State", "Abbr.", "Prev. Cases", "Curr. Cases",  "Prev.Deaths", "Curr. Deaths"]]
+    for items in data_list:
+        list_for_table.append([items[0], items[1], items[2], items[3], items[4], items[5]])
+    to_send = tabulate(list_for_table, headers="firstrow")
+    return to_send
+
