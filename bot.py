@@ -61,8 +61,8 @@ def receive_message():
         elif message == "update":
             response = get_message()
             send_message(user_id, response)
-        # Allow for admins to check bot status using messenger
         elif message.split()[0] == "sudo" and authenticate.is_admin(user_id):
+            # Allow for admins to check bot status using messenger
             response = get_sudo_message(message)
             send_message(user_id, response)
         else: # Unsupported text message

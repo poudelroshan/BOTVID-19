@@ -17,8 +17,7 @@ def verify_fb_token(request):
     return ("<h1>Access Denied: No Proper Rights!!<h1>")
 
 def is_admin(user_id):
-    if user_id == ADMIN:
-        return True
-    return False
+    return user_id == ADMIN
+
 
 
