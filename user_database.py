@@ -12,11 +12,13 @@ connection.commit()
 def add_user(user_id):
     with connection:
         cursor.execute("INSERT INTO users VALUES (%s)", (user_id,))
+        connection.commit()
     print("User Added to Database")
 
 def remove_user(user__id):
     with connection:
         cursor.execute("DELETE FROM users WHERE user_id = %s", (user__id,))
+        connection.commit()
     print("User Removed from Database")
 
     
