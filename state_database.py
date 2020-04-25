@@ -1,6 +1,5 @@
-import sqlite3 as sql
+import authenticate
 from tabulate import tabulate
-
 
 state_abbr = {"Alabama":"AL", "Alaska":"AK", "Arizona":"AZ", "Arkansas":"AR", "California":"CA",
               "Colorado":"CO", "Connecticut":"CT", "Delaware":"DE", "Florida":"FL", "Georgia":"GA",
@@ -16,7 +15,7 @@ state_abbr = {"Alabama":"AL", "Alaska":"AK", "Arizona":"AZ", "Arkansas":"AR", "C
               "USA Total": "Total"}
 
 
-connection = sql.connect("TABLE.db")
+connection = authenticate.connection
 cursor = connection.cursor()
 
 '''

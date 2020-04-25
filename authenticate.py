@@ -1,8 +1,16 @@
 from pymessenger.bot import Bot
+import pymysql
 
 ACCESS_TOKEN = 'EAAC2IRS5gxsBABwSlnbAn0DZC38TEZAWAbrZCYGEBX0nuCA4TtDMMwLGbgy9fKb7zzIlyc4OjTQmu2FoS9R89My0m4AZCrB5VhK6OGR2VxKkvZC9QjBSA5LC7J8qgbkfNiA0DAhqKDBQSPPGhuHZB7WZCWgt7MUJgBPj6gMuKMaZCAZDZD'
 VERIFY_TOKEN = 'thisistherandomlytypedverificationtoken!'
 ADMIN = 2807369225984082
+
+#SQL Database
+connection = pymysql.connect(host='us-cdbr-iron-east-01.cleardb.net',
+                             user='b1989099bde515',
+                             password='1064cb60',
+                             db='heroku_28545fb12532e5e')
+
 
 def verify_bot_access():
     return Bot(ACCESS_TOKEN)

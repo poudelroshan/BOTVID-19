@@ -1,6 +1,6 @@
-import sqlite3 as sql
+import authenticate
 
-connection = sql.connect("TABLE.db")
+connection = authenticate.connection
 cursor = connection.cursor()
 
 '''
