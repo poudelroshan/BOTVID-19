@@ -2,7 +2,7 @@ from pymessenger.bot import Bot
 
 ACCESS_TOKEN = 'EAAC2IRS5gxsBABwSlnbAn0DZC38TEZAWAbrZCYGEBX0nuCA4TtDMMwLGbgy9fKb7zzIlyc4OjTQmu2FoS9R89My0m4AZCrB5VhK6OGR2VxKkvZC9QjBSA5LC7J8qgbkfNiA0DAhqKDBQSPPGhuHZB7WZCWgt7MUJgBPj6gMuKMaZCAZDZD'
 VERIFY_TOKEN = 'thisistherandomlytypedverificationtoken!'
-ADMIN = 2723665511083978
+ADMIN = 2807369225984082
 
 def verify_bot_access():
     return Bot(ACCESS_TOKEN)
