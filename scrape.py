@@ -1,5 +1,5 @@
 from tabulate import tabulate
-import requests, database
+import requests, state_database
 from bs4 import BeautifulSoup
 
 
@@ -22,15 +22,15 @@ def corona():
 def update_database(state_data):
     state_data = refined(state_data)
     state = state_data[0]
-    if (state) not in database.get_states():
-        database.add_state_data(state_data)
+    if (state) not in state_database.get_states():
+        state_database.add_state_data(state_data)
     else:
-        prev_cases = database.get_state_cases(state)
-        prev_deaths = database.get_state_deaths(state)
+        prev_cases = state_database.get_state_cases(state)
+        prev_deaths = state_database.get_state_deaths(state)
         new_cases = state_data[1]
         new_deaths = state_data[2]
         if (new_cases > prev_cases or new_deaths > prev_deaths):
-            database.update_state_data(state_data)
+            state_database.update_state_data(state_data)
 
     print ("Data updated for " + state)
 
