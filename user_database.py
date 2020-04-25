@@ -1,9 +1,6 @@
-import pymysql
+import authentication
 
-connection = pymysql.connect(host='us-cdbr-iron-east-01.cleardb.net',
-                             user='b1989099bde515',
-                             password='1064cb60',
-                             db='heroku_28545fb12532e5e')
+connection = authentication.connection
 cursor = connection.cursor()
 
 '''
@@ -26,14 +23,14 @@ def remove_user(user__id):
 def is_user_subscribed(user__id):
     with connection:
         cursor.execute("SELECT * FROM users WHERE user_id= %s", (user__id,))
-        a = cursor.fetchall()
-    return (len(a) == 1)
+        a = len(cursor.fetchall())
+    return a == 1
         
 def get_total_users():
     with connection:
         cursor.execute("SELECT * FROM users")
-        a = cursor.fetchall()
-    return len(a)
+        a = len(cursor.fetchall())
+    return a
 
 def get_users():
     with connection:
