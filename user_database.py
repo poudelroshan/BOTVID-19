@@ -1,6 +1,6 @@
-import authentication
+import authenticate
 
-connection = authentication.connection
+connection = authenticate.connection
 cursor = connection.cursor()
 
 '''
