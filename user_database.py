@@ -10,43 +10,31 @@ connection.commit()
 '''
 
 def add_user(user_id):
-    try:
+    with connection:
         cursor.execute("INSERT INTO users VALUES (%s)", (user_id,))
-        print("User Added to Database")
-    finally:
-        connection.close()
+    print("User Added to Database")
 
 def remove_user(user__id):
-    try:
+    with connection:
         cursor.execute("DELETE FROM users WHERE user_id = %s", (user__id,))
-    finally:
-        connection.close()
-        print("User Removed from Database")
+    print("User Removed from Database")
 
     
 def is_user_subscribed(user__id):
-    try:
+    with connection:
         cursor.execute("SELECT * FROM users WHERE user_id= %s", (user__id,))
-        a = len(cursor.fetchall()) == 1
-    finally:
-        connection.close()
-        return a
+        return len(cursor.fetchall()) == 1
+    
     
 def get_total_users():
-    try:
-        cursor.execute("SELECT * FROM users")
-        a = len(cursor.fetchall())
-    finally:
-        connection.close()
-        return a
-
+with connection:
+    cursor.execute("SELECT * FROM users")
+    return len(cursor.fetchall())
 
 def get_users():
-    try:
+    with connection:
         cursor.execute("SELECT user_id FROM users")
-        a = cursor.fetchall()
-    finally:
-        return [x[0] for x in a] 
-
+        return [x[0] for x in cursor.fetchall()] 
+    
 
 
