@@ -22,7 +22,7 @@ def remove_user(user__id):
     
 def is_user_subscribed(user__id):
     cursor.execute("SELECT * FROM users WHERE user_id=?", (user__id,))
-    return len(cursor.fetchall() == 1)
+    return (len(cursor.fetchall()) == 1)
 
     
 def get_total_users():
