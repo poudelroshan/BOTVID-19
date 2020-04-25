@@ -6,8 +6,8 @@ cursor = connection.cursor()
 '''
 #ONLY USE FOR THE FIRST TIME TO CREATE THE TABLE
 cursor.execute("""CREATE TABLE users(user_id int)""")
-connection.commit()                                                     '''
-
+connection.commit()                                                     
+'''
 
 def add_user(user_id):
     with connection:

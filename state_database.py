@@ -19,13 +19,11 @@ state_abbr = {"Alabama":"AL", "Alaska":"AK", "Arizona":"AZ", "Arkansas":"AR", "C
 connection = sql.connect("TABLE.db")
 cursor = connection.cursor()
 
-
 '''
 #ONLY USE FOR THE FIRST TIME TO CREATE THE DATABASE
 cursor.execute("""CREATE TABLE data_table(STATE text, ABBR text,PREV_CASES int, CURR_CASES int, PREV_DEATHS int, CURR_DEATHS int)""")
 connection.commit()
 '''
-
 
 def get_state_current_numbers(state):
     data_list = get_clean_data()
