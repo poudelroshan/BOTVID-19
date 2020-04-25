@@ -30,8 +30,8 @@ def get_total_users():
     return len(cursor.fetchall())
 
 def get_users():
-    cursor.execute("SELECT * FROM users")
-    return cursor.fetchall()
+    cursor.execute("SELECT user_id FROM users")
+    return [x[0] for x in cursor.fetchall()]
 
 
-print(get_users())
+
