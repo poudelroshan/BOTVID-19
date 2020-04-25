@@ -27,9 +27,9 @@ def is_user_subscribed(user__id):
     
     
 def get_total_users():
-with connection:
-    cursor.execute("SELECT * FROM users")
-    return len(cursor.fetchall())
+    with connection:
+        cursor.execute("SELECT * FROM users")
+        return len(cursor.fetchall())
 
 def get_users():
     with connection:
