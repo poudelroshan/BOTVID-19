@@ -33,3 +33,5 @@ def get_users():
     cursor.execute("SELECT * FROM users")
     return cursor.fetchall()
 
+
+print(get_users())
