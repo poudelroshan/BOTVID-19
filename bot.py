@@ -115,7 +115,7 @@ def index():
 
 
 if __name__=="__main__":
-    app.run(threaded=True) # enable threading for multiple user handling
+    app.run(threaded=False) # enable threading for multiple user handling
     
 
 
