@@ -31,7 +31,9 @@ def get_total_users():
 
 def get_users():
     cursor.execute("SELECT user_id FROM users")
-    return [x[0] for x in cursor.fetchall()]
+    a = cursor.fetchall()
+    return [x[0] for x in a] 
 
-
+print("Total users: ", get_total_users())
+print("Users:")
 print(get_users())
