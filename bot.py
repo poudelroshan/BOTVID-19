@@ -23,8 +23,11 @@ def get_sudo_message(message):
     if message == "sudo gtu":
         # 1) "sudo gtu" -> get total numbers of users from database
         response = user_database.get_total_users()
+    if message == "sudo gu":
+        # 2) "sudo gu" -> return list of user_ids from database
+        response = user_database.get_users()
     elif message == "sudo status":
-        # 2) "sudo status" -> Is the bot working?
+        # 3) "sudo status" -> Is the bot working?
         response = "Hey, Roshan! BOTVID-19 is working great! :)"
     else:
         response = "unrecognized admin command"
