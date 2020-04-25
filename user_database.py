@@ -21,15 +21,13 @@ def remove_user(user__id):
 
     
 def is_user_subscribed(user__id):
-    with connection:
-        cursor.execute("SELECT * FROM users WHERE user_id= %s", (user__id,))
-        a = len(cursor.fetchall())
+    cursor.execute("SELECT * FROM users WHERE user_id= %s", (user__id,))
+    a = len(cursor.fetchall())
     return a == 1
         
 def get_total_users():
-    with connection:
-        cursor.execute("SELECT * FROM users")
-        a = len(cursor.fetchall())
+    cursor.execute("SELECT * FROM users")
+    a = len(cursor.fetchall())
     return a
 
 def get_users():
