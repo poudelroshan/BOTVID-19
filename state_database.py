@@ -42,8 +42,9 @@ def get_state_cases(state):
     
     
 def get_states():
-    cursor.execute("SELECT state from data_table")
-    untidy_list =  cursor.fetchall()
+    with connection:
+        cursor.execute("SELECT state from data_table")
+        untidy_list =  cursor.fetchall()
     tidy_list = []
     for items in untidy_list:
         tidy_list.append(items[0])
