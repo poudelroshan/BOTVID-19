@@ -51,7 +51,7 @@ def receive_message():
         except: # If there is emoji or pictures, ignore it
             pass
         user_id = int(output["entry"][0]["messaging"][0]["sender"]["id"]) #Extracting user ID
-
+        print("The user id is: ", user_id)
         if message == "DEFAULT MESSAGE": # User sent a picture or an emoji
             send_message(user_id, "Sorry! I cannot currently handle non-text messages")
         elif message == "subscribe": 
