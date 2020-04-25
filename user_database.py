@@ -35,3 +35,4 @@ def get_users():
 
 
 
+print(get_users())
