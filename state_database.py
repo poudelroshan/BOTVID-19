@@ -61,8 +61,7 @@ def add_state_data(state_data):
     prev_deaths = 0
     curr_deaths = state_data[2]
     with connection:
-        cursor.execute("INSERT INTO data_table VALUES(?,?,?,?,?, ?)",
-                       (state, abbr, prev_cases, curr_cases, prev_deaths, curr_deaths))
+        cursor.execute("INSERT INTO data_table VALUES(%s, %s, %s, %s, %s, %s)",(state, abbr, prev_cases, curr_cases, prev_deaths, curr_deaths))
     print(state," Added to the Database")
 
     
@@ -73,18 +72,18 @@ def update_state_data(state_data):
     prev_deaths = get_curr_deaths(state)
     curr_deaths = state_data[2]
     with connection:
-        cursor.execute("UPDATE data_table SET PREV_CASES = ?, CURR_CASES = ?, PREV_DEATHS = ?, CURR_DEATHS = ? WHERE STATE = ?",(prev_cases, curr_cases, prev_deaths, curr_deaths, state))
+        cursor.execute("UPDATE data_table SET PREV_CASES = %s, CURR_CASES = %s, PREV_DEATHS = %s, CURR_DEATHS = %s WHERE STATE = %s",(prev_cases, curr_cases, prev_deaths, curr_deaths, state))
 
 
 def get_curr_cases(state):
     with connection:
-        cursor.execute("SELECT * from data_table WHERE state = ?", (state,))
+        cursor.execute("SELECT * from data_table WHERE state = %s",(state,))
         curr_cases = cursor.fetchone()[3]
     return curr_cases
 
 def get_curr_deaths(state):
     with connection:
-        cursor.execute("SELECT * from data_table WHERE state = ?", (state,))
+        cursor.execute("SELECT * from data_table WHERE state = %s", (state,))
         curr_deaths = cursor.fetchone()[5]
     return curr_deaths
 

@@ -11,17 +11,17 @@ connection.commit()
 
 def add_user(user_id):
     with connection:
-        cursor.execute("INSERT INTO users VALUES (?)", (user_id,))
+        cursor.execute("INSERT INTO users VALUES (%s)", (user_id,))
     print("User Added to Database")
 
 def remove_user(user__id):
     with connection:
-        cursor.execute("DELETE FROM users WHERE user_id = ?", (user__id,))
+        cursor.execute("DELETE FROM users WHERE user_id = %s", (user__id,))
     print("User Removed from Database")
 
     
 def is_user_subscribed(user__id):
-    cursor.execute("SELECT * FROM users WHERE user_id=?", (user__id,))
+    cursor.execute("SELECT * FROM users WHERE user_id= %s", (user__id,))
     return (len(cursor.fetchall()) == 1)
 
     
