@@ -79,7 +79,7 @@ def is_user_subscribed(user_id):
 
 # Add user_id to the database
 def subscribe(user_id):
-    if not is_user_subscribed(user_id):
+    if not (is_user_subscribed(user_id)):
         user_database.add_user(user_id)
         send_message(user_id, "Success! I will now send you periodic messages :)")
         # Realtime console output:

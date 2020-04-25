@@ -1,6 +1,7 @@
 import authenticate
 
-
+connection = authenticate.connection
+cursor = connection.cursor()
 
 '''
 #ONLY USE FOR THE FIRST TIME TO CREATE THE TABLE
@@ -9,43 +10,43 @@ connection.commit()
 '''
 
 def add_user(user_id):
-    connection = authenticate.connection
-    cursor = connection.cursor()
-    with connection:
+    try:
         cursor.execute("INSERT INTO users VALUES (%s)", (user_id,))
-    print("User Added to Database")
+        print("User Added to Database")
+    finally:
+        connection.close()
 
 def remove_user(user__id):
-    connection = authenticate.connection
-    cursor = connection.cursor()
-    with connection:
+    try:
         cursor.execute("DELETE FROM users WHERE user_id = %s", (user__id,))
-    print("User Removed from Database")
+    finally:
+        connection.close()
+        print("User Removed from Database")
 
     
 def is_user_subscribed(user__id):
-    connection = authenticate.connection
-    cursor = connection.cursor()
-    with connection:
+    try:
         cursor.execute("SELECT * FROM users WHERE user_id= %s", (user__id,))
-    return (len(cursor.fetchall()) == 1)
-
+        a = len(cursor.fetchall()) == 1
+    finally:
+        connection.close()
+        return a
     
 def get_total_users():
-    connection = authenticate.connection
-    cursor = connection.cursor()
-    with connection:
+    try:
         cursor.execute("SELECT * FROM users")
-    return len(cursor.fetchall())
+        a = len(cursor.fetchall())
+    finally:
+        connection.close()
+        return a
 
 
 def get_users():
-    connection = authenticate.connection
-    cursor = connection.cursor()
-    with connection:
+    try:
         cursor.execute("SELECT user_id FROM users")
         a = cursor.fetchall()
-    return [x[0] for x in a] 
+    finally:
+        return [x[0] for x in a] 
 
 
 
