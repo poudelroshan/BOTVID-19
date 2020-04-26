@@ -57,6 +57,8 @@ def receive_message():
         print("The user id is: ", user_id)
         if message == "DEFAULT MESSAGE": # User sent a picture or an emoji
             send_message(user_id, "Sorry! I cannot currently handle non-text messages")
+        elif message == "hi" or "hello":
+            send_message(user_id, message + " there!")
         elif message == "subscribe": 
             subscribe(user_id)
         elif message == "unsubscribe":
@@ -71,6 +73,7 @@ def receive_message():
             send_message(user_id, response)
         else: # Unsupported text message
             send_message(user_id, "Sorry! I am a dumb bot, and I didn't quite understand what you just said.")
+            send_message(user_id, "Send 'subscribe' to subscribe for periodic notifications, 'update' to get updates about COVID-19, and 'unsubscribe' to unsubscribe from periodic notifications")
             
         return "Message Processed"
 
