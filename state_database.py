@@ -81,8 +81,7 @@ def update_state_data(state_data):
     connection.ping(reconnect=True)
     cursor = connection.cursor()
     cursor.execute("UPDATE data_table SET PREV_CASES = %s, CURR_CASES = %s, PREV_DEATHS = %s, CURR_DEATHS = %s WHERE STATE = %s",(prev_cases, curr_cases, prev_deaths, curr_deaths, state))
-    cursor.close()
-    connection.close()
+
 
 
 def get_curr_cases(state):
