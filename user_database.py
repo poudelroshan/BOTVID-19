@@ -1,10 +1,12 @@
 import authenticate
 
-'''
 #ONLY USE FOR THE FIRST TIME TO CREATE THE TABLE
-cursor.execute("""CREATE TABLE users(user_id int)""")
+connection = authenticate.connection
+connection.ping(reconnect=True)
+cursor = connection.cursor()
+cursor.execute("""CREATE TABLE users(user_id BigInt)""")
 connection.commit()                                                     
-'''
+
 
 def add_user(user_id):
     connection = authenticate.connection
