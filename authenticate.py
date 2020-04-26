@@ -11,7 +11,7 @@ connection = mysql.connector.connect(user='b1989099bde515',
                                      password='1064cb60',
                                      host='us-cdbr-iron-east-01.cleardb.net',
                                      db='heroku_28545fb12532e5e')
-
+connection.ping(reconnect=True)
 
 
 def verify_bot_access():
