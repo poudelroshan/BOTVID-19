@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <title>BOTVID-19</title>
+  </head>
+  <body>
+    <!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v6.0'
+          });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+      <!-- Your customer chat code -->
+      <div class="fb-customerchat"
+           attribution=setup_tool
+           page_id="108892410756265"
+	   theme_color="#13cf13"
+	   logged_in_greeting="Hello! Send me 'update' to get updates about COVID-19 in the US"
+	   logged_out_greeting="Hello! Send me 'update' to get updates about COVID-19 in the US">
+      </div>
+      <h1> Welcome to BOTVID-19 web app! </h1>
+      <h3> Please use the following messenger API to chat with the bot </h3>
+    
+  </body>
+</html>
