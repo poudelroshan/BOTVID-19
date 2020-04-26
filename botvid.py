@@ -64,7 +64,7 @@ def receive_message():
         elif message == "update":
             response = get_message()
             send_message(user_id, response)
-            send_message(user_id, "Above data was scraped from https://www.worldometers.info/coronavirus/country/us/"
+            send_message(user_id, "Above data was scraped from https://www.worldometers.info/coronavirus/country/us/")
         elif message.split()[0] == "sudo" and authenticate.is_admin(user_id):
             # Allow for admins to check bot status using messenger
             response = get_sudo_message(message)
