@@ -35,7 +35,7 @@ def is_user_subscribed(user__id):
     users = cursor.fetchall()
     cursor.close()
     connection.close()
-    return len(users) == 1
+    return len(users) != 0
 
 def get_total_users():
     connection = authenticate.connection
@@ -58,11 +58,6 @@ def get_users():
     connection.close()
     return [x[0] for x in user_ids]
     
-
-
-
-
-
 
 
 
