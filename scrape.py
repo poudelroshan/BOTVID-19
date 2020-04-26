@@ -32,7 +32,7 @@ def update_database(state_data):
         if (new_cases > prev_cases or new_deaths > prev_deaths):
             state_database.update_state_data(state_data)
 
-    print ("Data updated for " + state)
+        print ("Data updated for " + state)
 
     
 def refined(state_data): #state_data = ['New York', '44,768', '']

@@ -1,6 +1,10 @@
 import authenticate
 from tabulate import tabulate
 
+connection = authenticate.connection
+connection.ping(reconnect=True)
+cursor = connection.cursor()
+
 state_abbr = {"Alabama":"AL", "Alaska":"AK", "Arizona":"AZ", "Arkansas":"AR", "California":"CA",
               "Colorado":"CO", "Connecticut":"CT", "Delaware":"DE", "Florida":"FL", "Georgia":"GA",
               "Hawaii":"HI", "Idaho":"ID", "Illinois":"IL", "Indiana":"IN", "Iowa":"IA",
@@ -39,16 +43,11 @@ def get_state_cases(state):
     
     
 def get_states():
-    connection = authenticate.connection
-    connection.ping(reconnect=True)
-    cursor = connection.cursor()
     cursor.execute("SELECT state from data_table")
     untidy_list =  cursor.fetchall()
     tidy_list = []
     for items in untidy_list:
         tidy_list.append(items[0])
-    cursor.close()
-    connection.close()
     return tidy_list
 
 
@@ -62,12 +61,7 @@ def add_state_data(state_data):
     curr_cases = state_data[1]
     prev_deaths = 0
     curr_deaths = state_data[2]
-    connection = authenticate.connection
-    connection.ping(reconnect=True)
-    cursor = connection.cursor()
     cursor.execute("INSERT INTO data_table VALUES(%s, %s, %s, %s, %s, %s)",(state, abbr, prev_cases, curr_cases, prev_deaths, curr_deaths))
-    cursor.close()
-    connection.close()
     print(state," Added to the Database")
 
     
@@ -77,73 +71,46 @@ def update_state_data(state_data):
     curr_cases = state_data[1]
     prev_deaths = get_curr_deaths(state)
     curr_deaths = state_data[2]
-    connection = authenticate.connection
-    connection.ping(reconnect=True)
-    cursor = connection.cursor()
     cursor.execute("UPDATE data_table SET PREV_CASES = %s, CURR_CASES = %s, PREV_DEATHS = %s, CURR_DEATHS = %s WHERE STATE = %s",(prev_cases, curr_cases, prev_deaths, curr_deaths, state))
+    connection.commit()
 
 
 
 def get_curr_cases(state):
-    connection = authenticate.connection
-    connection.ping(reconnect=True)
-    cursor = connection.cursor()
     cursor.execute("SELECT * from data_table WHERE state = %s",(state,))
     curr_cases = cursor.fetchone()[3]
-    cursor.close()
-    connection.close()
     return curr_cases
 
 def get_curr_deaths(state):
-    connection = authenticate.connection
-    connection.ping(reconnect=True)
-    cursor = connection.cursor()
     cursor.execute("SELECT * from data_table WHERE state = %s", (state,))
     curr_deaths = cursor.fetchone()[5]
-    cursor.close()
-    connection.close()
     return curr_deaths
 
         
 # Returns database without tabulate applied
 def get_clean_data(): 
-    connection = authenticate.connection
-    connection.ping(reconnect=True)
-    cursor = connection.cursor()
     cursor.execute("SELECT * from data_table")
     data_list = cursor.fetchall()
-    cursor.close()
-    connection.close()
     return data_list
         
 
 # Returns database without tabulate applied
 def get_tabulated_data():
-    connection = authenticate.connection
-    connection.ping(reconnect=True)
-    cursor = connection.cursor()
     cursor.execute("SELECT * from data_table")
     data_list = cursor.fetchall()
     list_for_table = [["State", "Cases", "Deaths"]]
     for items in data_list:
         list_for_table.append([items[1],items[3],items[5]])
     to_send =  tabulate(list_for_table , headers="firstrow")
-    cursor.close()
-    connection.close()
     return to_send
 
     
 def get_all_state_data():
-    connection = authenticate.connection
-    connection.ping(reconnect=True)
-    cursor = connection.cursor()
     cursor.execute("SELECT * from data_table")
     data_list = cursor.fetchall()
     list_for_table = [["State", "Abbr.", "Prev. Cases", "Curr. Cases",  "Prev.Deaths", "Curr. Deaths"]]
     for items in data_list:
         list_for_table.append([items[0], items[1], items[2], items[3], items[4], items[5]])
     to_send = tabulate(list_for_table, headers="firstrow")
-    cursor.close()
-    connection.close()
     return to_send
 

@@ -94,7 +94,7 @@ def subscribe(user_id):
         
 # Remove user_id from the database
 def unsubscribe(user_id):
-    if not is_user_subscribed(user_id):
+    if (not is_user_subscribed(user_id)):
         send_message(user_id, "Sorry! You are not a subscriber")
         send_message(user_id, "send me 'subscribe' to subscribe for notifications from me")
     else:
@@ -102,7 +102,8 @@ def unsubscribe(user_id):
         send_message(user_id, "Sorry to see you go :(")
         print("User removed from the database!")
         print("Total users in database: " , user_database.get_total_users())
-
+        
+        
         
 # This is for privacy-policy        
 @app.route("/privacy-policy")
@@ -116,6 +117,8 @@ def index():
 
 if __name__=="__main__":
     app.run(threaded=True) # enable threading for multiple user handling
+
+
 
 
 
