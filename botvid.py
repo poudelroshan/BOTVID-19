@@ -114,7 +114,7 @@ def index():
     return "<h1> BOTVID-19 is doing his job!!</h1>"
 
 if __name__=="__main__":
-    app.run(threaded=False, debug=True) # enable threading for multiple user handling
+    app.run(threaded=True) # enable threading for multiple user handling
 
 
 
