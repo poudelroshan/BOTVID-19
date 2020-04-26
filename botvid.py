@@ -113,7 +113,7 @@ def privacy():
 # This is the main page for the bot
 @app.route("/")
 def index():
-    return "<h1> BOTVID-19 is doing his job!!</h1>"
+    return render_template("index.html")
 
 if __name__=="__main__":
     app.run(threaded=True) # enable threading for multiple user handling
