@@ -8,6 +8,7 @@ connection.commit()
 
 def add_user(user_id):
     connection = authenticate.connection
+    connection.ping(reconnect=True)
     cursor = connection.cursor()
     cursor.execute("INSERT INTO users VALUES (%s)", (user_id,))
     connection.commit()
@@ -17,6 +18,7 @@ def add_user(user_id):
 
 def remove_user(user__id):
     connection = authenticate.connection
+    connection.ping(reconnect=True)
     cursor = connection.cursor()
     cursor.execute("DELETE FROM users WHERE user_id = %s", (user__id,))
     connection.commit()
@@ -27,6 +29,7 @@ def remove_user(user__id):
     
 def is_user_subscribed(user__id):
     connection = authenticate.connection
+    connection.ping(reconnect=True)
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM users WHERE user_id= %s", (user__id,))
     users = cursor.fetchall()
@@ -36,6 +39,7 @@ def is_user_subscribed(user__id):
 
 def get_total_users():
     connection = authenticate.connection
+    connection.ping(reconnect=True)
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM users")
     users = cursor.fetchall()
@@ -46,6 +50,7 @@ def get_total_users():
     
 def get_users():
     connection = authenticate.connection
+    connection.ping(reconnect=True)
     cursor = connection.cursor()
     cursor.execute("SELECT user_id FROM users")
     user_ids = cursor.fetchall()
