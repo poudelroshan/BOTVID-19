@@ -96,6 +96,9 @@ def get_clean_data():
 
 # Returns database without tabulate applied
 def get_tabulated_data():
+    connection = authenticate.connection
+    connection.ping(reconnect=True)
+    cursor = connection.cursor()
     cursor.execute("SELECT * from data_table")
     data_list = cursor.fetchall()
     list_for_table = [["State", "Cases", "Deaths"]]
