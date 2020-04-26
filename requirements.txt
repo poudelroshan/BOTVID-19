@@ -10,6 +10,6 @@ requests-toolbelt==0.9.1
 requests-unixsocket==0.1.5
 selenium==3.141.0
 tabulate==0.8.7
-PyMySQL==0.9.3
+mysql-connector-python==8.0.19
 
 
