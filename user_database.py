@@ -10,6 +10,7 @@ def add_user(user_id):
     connection = authenticate.connection
     connection.ping(reconnect=True)
     cursor = connection.cursor()
+    print("The following user id is being added")
     cursor.execute("INSERT INTO users VALUES (%s)", (user_id,))
     connection.commit()
     cursor.close()
