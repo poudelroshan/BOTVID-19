@@ -1,18 +1,16 @@
 from pymessenger.bot import Bot
 import os
-from boto.s3.connection import S3Connection
 
-
-ACCESS_TOKEN = S3Connection(os.environ["ACCESS_TOKEN"])
-VERIFY_TOKEN = S3Connection(os.environ["VERIFICATION_TOKEN"])
-ADMIN = S3Connection(os.environ["ADMIN"])
+ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
+VERIFY_TOKEN = os.environ.get("VERIFICATION_TOKEN")
+ADMIN = os.environ.get("ADMIN")
 
 #SQL Database
 import mysql.connector
-connection = mysql.connector.connect(user= S3Connection(os.environ["DB_USER"]),
-                                     password= S3Connection(os.environ["DB_PASS"]),
-                                     host= S3Connection(os.environ["DB_HOST"]),
-                                     db= S3Connection(os.environ["DB"]))
+connection = mysql.connector.connect(user= os.environ.get("DB_USER"),
+                                     password= os.environ.get("DB_PASS"),
+                                     host= os.environ.get("DB_HOST"),
+                                     db= os.environ.get("DB"))
 
 def verify_bot_access():
     return Bot(ACCESS_TOKEN)
