@@ -1,16 +1,13 @@
 import scrape, botvid, user_database
+from datetime import datetime
 
 Alert1 = "You received the message above because you have subscribed for periodic notifications from me. The subscription lasts for 24 hours before Facebook unsubscribes you automatically."
 Alert2 = "If you want to keep receiving messages from me, you will need to send me 'subscribe' every 24 hours. Sorry for this hassle, but this is one of Facebook's Privacy Policies"
-DEFAULT_COUNTER = 1
-CURRENT_COUNTER = None
-
-def reset_counter():
-    CURRENT_COUNTER = DEFAULT_COUNTER
-    
 
 def send_message():
-    if (counter % 120 == 0):
+    now = datetime.now()
+    counter = now.hour
+    if (counter % 2 == 0):
         for users in user_database.get_users():
             botvid.send_message(users, botvid.get_message())
             botvid.send_message(users, Alert1)
@@ -19,10 +16,8 @@ def send_message():
         
     print("Sent automated update message to all users")
 
-
-
 if __name__ == '__main__':
     scrape.corona() #update database
-    send_message(CURRENT_COUNTER*10)
+    send_message()
 
     

@@ -1,10 +1,10 @@
 # BOTVID-19
 
 #### Note:
-Initially, there were two repositories for this messenger bot: BOTVID-19 (private repo) & BOTVID-20 (public repo). Based on the feedback received, from [u/warpedspoon](https://www.reddit.com/u/warpedspoon), both of these repositories have been merged to a single repository: BOTVID-19 (public repo). This repository is linked to the live version of the bot, and thus, any changes to the files here will be reflected in the bot.
+Initially, there were two repositories for this messenger bot: BOTVID-19 (private repo) & BOTVID-20 (public repo). Based on the feedback received from [u/warpedspoon](https://www.reddit.com/u/warpedspoon), both of these repositories have been merged to a single repository: BOTVID-19 (public repo). This repository is linked to the live version of the bot, and thus, any changes to the files here will be reflected in the bot.
 
 ## System Architecture and working
-![https://www.youtube.com/watch?v=4HZa8AJ9www](http://i3.ytimg.com/vi/4HZa8AJ9www/maxresdefault.jpg)
+![](/images/sys_arc.png)
 
 The bot has several components:
 1. Heroku with automatic deployment from Github enabled
