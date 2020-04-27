@@ -8,7 +8,7 @@ def send_message():
     now = datetime.now()
     counter_mins = now.minute
     counter_hours = now.hour
-    if (counter_hours % 2 == 0 and counter_mins == 42):
+    if (counter_hours % 2 == 0 and counter_mins == 53 or counter_mins == 54):
         for users in user_database.get_users():
             botvid.send_message(users, botvid.get_message())
             botvid.send_message(users, Alert1)
