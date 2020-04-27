@@ -1,4 +1,5 @@
 from pymessenger.bot import Bot
+import os
 from boto.s3.connection import S3Connection
 
 
