@@ -37,7 +37,7 @@ def get_sudo_message(message):
 def get_swear_response():
     response = ["Science says swearing is good for you. Well, fuck science!",
                 "When angry, count to four. When very angry, swear :D",
-                "'Swearing is industry language. For as long as we're alive, it's not going to change.' - Ramsay"
+                "'Swearing is industry language. For as long as we're alive, it's not going to change.' - Ramsay",
                 "Sorry! I forgot to add that you're stupid as well!!"]
     import random
     return random.choice(response)
@@ -69,7 +69,7 @@ def receive_message():
             send_message(user_id, "Sorry! I cannot currently handle non-text messages")
             send_message(user_id, "Send 'subscribe' to subscribe for periodic notifications, 'update' to get updates about COVID-19, and 'unsubscribe' to unsubscribe from periodic notifications")
         elif message in ["hi", "hello", "hey", "hola", "namaste"]:
-            send_message(user_id, message + " there!")
+            send_message(user_id, message.capitalize() + " there!")
         elif message == "subscribe": 
             subscribe(user_id)
         elif message == "unsubscribe":
