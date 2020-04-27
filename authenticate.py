@@ -1,16 +1,16 @@
 from pymessenger.bot import Bot
+import os
 
-
-ACCESS_TOKEN = 'EAAC2IRS5gxsBABwSlnbAn0DZC38TEZAWAbrZCYGEBX0nuCA4TtDMMwLGbgy9fKb7zzIlyc4OjTQmu2FoS9R89My0m4AZCrB5VhK6OGR2VxKkvZC9QjBSA5LC7J8qgbkfNiA0DAhqKDBQSPPGhuHZB7WZCWgt7MUJgBPj6gMuKMaZCAZDZD'
-VERIFY_TOKEN = 'thisistherandomlytypedverificationtoken!'
-ADMIN = 2807369225984082
+ACCESS_TOKEN = os.getenv(ACCESS_TOKEN)
+VERIFY_TOKEN = os.getenv(VERIFICATION_TOKEN)
+ADMIN = os.getenv(ADMIN)
 
 #SQL Database
 import mysql.connector
-connection = mysql.connector.connect(user='b1989099bde515',
-                                     password='1064cb60',
-                                     host='us-cdbr-iron-east-01.cleardb.net',
-                                     db='heroku_28545fb12532e5e')
+connection = mysql.connector.connect(user= os.getenv(DB_USER),
+                                     password= os.getenv(DB_PASS),
+                                     host= os.getenv(DB_HOST),
+                                     db= os.getenv(DB))
 
 def verify_bot_access():
     return Bot(ACCESS_TOKEN)
