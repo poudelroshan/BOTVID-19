@@ -6,13 +6,12 @@ Alert2 = "If you want to keep receiving messages from me, you will need to send 
 
 def send_message():
     now = datetime.now()
-    counter = now.hour
-    if (counter % 2 == 0):
+    counter_mins = now.minute
+    if (counter_mins == 59):
         for users in user_database.get_users():
             botvid.send_message(users, botvid.get_message())
             botvid.send_message(users, Alert1)
             botvid.send_message(users, Alert2)
-            reset_counter()
         
     print("Sent automated update message to all users")
 
