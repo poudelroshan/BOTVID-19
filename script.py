@@ -8,14 +8,15 @@ def send_message():
     now = datetime.now()
     counter_mins = now.minute
     counter_hours = now.hour
-    if (counter_hours % 2 == 0 and counter_mins == 53 or counter_mins == 54):
+    if (counter_hours % 2 == 0 and (counter_mins == 12 or counter_mins == 13)):
+        # Send updates every 2 even hours (0,2,4,6...) at 12 or 13 minutes ie. 2:12 pm or 2:13 pm and so on
         for users in user_database.get_users():
             botvid.send_message(users, botvid.get_message())
             botvid.send_message(users, Alert1)
             botvid.send_message(users, Alert2)
             print("Sent automated update message to user: ", users)
-    
-    print("Data base updated at: ", now)
+            
+            print("Data base updated at: ", now)
     
 
 if __name__ == '__main__':
