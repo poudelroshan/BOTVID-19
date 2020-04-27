@@ -33,6 +33,16 @@ def get_sudo_message(message):
         response = "unrecognized admin command"
     return response
 
+# Respond to swear word
+def get_swear_response():
+    response = ["Science says swearing is good for you. Well, fuck science!",
+                "When angry, count to four. When very angry, swear :D",
+                "'Swearing is industry language. For as long as we're alive, it's not going to change.' - Ramsay"
+                "Sorry! I forgot to add that you're stupid as well!!"]
+    import random
+    return random.choice(response)
+                
+
 
 # Webhook for GET & POST requests
 # Verifies the GET/POST requests came from messenger ID of the Bot
@@ -58,7 +68,7 @@ def receive_message():
         if message == "DEFAULT MESSAGE": # User sent a picture or an emoji
             send_message(user_id, "Sorry! I cannot currently handle non-text messages")
             send_message(user_id, "Send 'subscribe' to subscribe for periodic notifications, 'update' to get updates about COVID-19, and 'unsubscribe' to unsubscribe from periodic notifications")
-        elif message == "hi" or message == "hello":
+        elif message in ["hi", "hello", "hey", "hola", "namaste"]:
             send_message(user_id, message + " there!")
         elif message == "subscribe": 
             subscribe(user_id)
@@ -71,6 +81,10 @@ def receive_message():
         elif message.split()[0] == "sudo" and authenticate.is_admin(user_id):
             # Allow for admins to check bot status using messenger
             response = get_sudo_message(message)
+            send_message(user_id, response)
+        elif "fuck" in message.split():
+            # For people who swear, give a funny response
+            response = get_swear_response()
             send_message(user_id, response)
         else: # Unsupported text message
             send_message(user_id, "Sorry! I am a dumb bot, and I didn't quite understand what you just said.")
@@ -103,7 +117,9 @@ def unsubscribe(user_id):
         send_message(user_id, "send me 'subscribe' to subscribe for notifications from me")
     else:
         user_database.remove_user(user_id)
+        send_message(user_id, "I won't send you updates anymore")
         send_message(user_id, "Sorry to see you go :(")
+
         print("User removed from the database!")
         print("Total users in database: " , user_database.get_total_users())
         
