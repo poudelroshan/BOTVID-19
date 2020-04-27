@@ -26,9 +26,6 @@ I found myself checking [this website](https://www.worldometers.info/coronavirus
 * The bot also has message subscription feature built in. Users can send 'subscribe' and 'unsubscribe' to subscribe/unsubscribe for periodic updates from the bot. This feature, though implemented,  is currently broken due to the limitations imposed by facebook on who the bot can send message to.
 * The bot prevents subsribed users from subscribing again or unsubscribed users from unsubscribing. 
 
-#### Note to users who try to interact with the bot:
-Since the bot has not been approved for message sending by Facebook, currently, only the Admins/Testers of this bot will be able to interact with the bot. For general users, the bot will respond using a Facebook sent automated message about this note. The bot will hopefully be approved by Facebook for message sending by Tuesday, April 27th, 2020.
-
 #### Admin commands for the bot
 To make it easier for the admins to check how many users are using the subsciption feature, some commands are built to work within messenger. This saves the admins from having to check the MYSQL database.
 * 'sudo status' responds back with some greeting if the bot is working. To check whether the bot is working or not, users may send anything to the bot. However, 'sudo status'  is a more formal way for admins to check whether the bot is working or not.
