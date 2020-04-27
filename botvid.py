@@ -40,8 +40,7 @@ def get_swear_response():
                 "'Swearing is industry language. For as long as we're alive, it's not going to change.' - Ramsay",
                 "Sorry! I forgot to add that you're stupid as well!!",
                 "01010111 01100101 01101100 01101100 00101100 00100000 01100110 01110101 01100011 01101011 00100000 01111001 01101111 01110101 00100001"]
-    
-]
+
     import random
     return random.choice(response)
                 
