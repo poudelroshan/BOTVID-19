@@ -1,7 +1,6 @@
 # BOTVID-19
 
-
-#### Note
+#### Note:
 Initially, there were two repositories for this messenger bot: BOTVID-19 (private repo) & BOTVID-20 (public repo). Based on the feedback received, from u/warpedspoon, both of these repositories have been merged to a single repository: BOTVID-19 (public repo). This repository is linked to the live version of the bot, and thus, any changes to the files here will be reflected in the bot.
 
 ## System Architecture and working
@@ -24,7 +23,7 @@ I found myself checking [this website](https://www.worldometers.info/coronavirus
 * The bot fetches scraped data from its MYSQL database and responds back to the user
 * The bot also handles basic user inputs like 'hi' or 'hello'
 * The bot cannot handle non-text messages like emojis or pictures and thus, responds accordingly
-* The bot also has message subscription feature built in. Users can send 'subscribe' and 'unsubscribe' to subscribe/unsubscribe for periodic updates from the bot. ##### This feature, though implemented,  is currently broken due to the limitations imposed by facebook on who the bot can send message to
+* The bot also has message subscription feature built in. Users can send 'subscribe' and 'unsubscribe' to subscribe/unsubscribe for periodic updates from the bot. This feature, though implemented,  is currently broken due to the limitations imposed by facebook on who the bot can send message to.
 * The bot prevents subsribed users from subscribing again or unsubscribed users from unsubscribing. 
 
 #### Note to users who try to interact with the bot:
@@ -53,7 +52,7 @@ To make it easier for the admins to check how many users are using the subscipti
   2. state table: stores state name, state abbreviation, previous cases, current cases, previous deaths, and current deaths
 * script.py is set to be run every 10 minutes using Heroku scheduler. This will call scrape.py to update the database contents, and users subscribed to the bot will also be sent an update message. (* The latter part of this feature is currently broken due to Facebook restrictions)
 * console.py: lets admins interact with the database using terminal. console.py uses args to call different methods from different .py files
-  	      	   1. python3 console.py 'help' -> prints available commands
+  	      	   1. python3 console.py 'help' -> prints available commands	     
 		   2. python3 console.py 'get_users()' -> prints a list of users from the database
 		   3. python3 console.py 'get_total_users()' -> prints the total number of subscribers in the database
 		   4. python3 console.py 'get_update_data()' -> prints what users get when they send 'update'
