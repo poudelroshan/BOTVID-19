@@ -94,7 +94,7 @@ def get_clean_data():
     return data_list
         
 
-# Returns database without tabulate applied
+# Returns database with tabulate applied
 def get_tabulated_data():
     connection = authenticate.connection
     connection.ping(reconnect=True)
@@ -109,11 +109,14 @@ def get_tabulated_data():
 
     
 def get_all_state_data():
+    connection = authenticate.connection
+    connection.ping(reconnect=True)
+    cursor = connection.cursor()
     cursor.execute("SELECT * from data_table")
     data_list = cursor.fetchall()
     list_for_table = [["State", "Abbr.", "Prev. Cases", "Curr. Cases",  "Prev.Deaths", "Curr. Deaths"]]
     for items in data_list:
         list_for_table.append([items[0], items[1], items[2], items[3], items[4], items[5]])
-    to_send = tabulate(list_for_table, headers="firstrow")
+    to_send = tabulate(list_for_table, headers="firstrow") #removed tabulate here
     return to_send
 

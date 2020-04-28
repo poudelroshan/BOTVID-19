@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://forthebadge.com/images/badges/made-with-python.svg">
+</p>
+
 # BOTVID-19
 
 #### Note:

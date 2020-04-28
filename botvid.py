@@ -12,6 +12,9 @@ def send_message(recipient_id, response):
     bot.send_text_message(recipient_id, response)
     return "Message Sent!"
 
+# Sends images to recipient_id using Pymessenger API
+def send_image(recipient_id, image):
+    bot.send_image(recipient_id, image)
 
 # Fetches the data from database for the user
 def get_message():
