@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template
 from pymessenger.bot import Bot
 import authenticate, user_database, state_database
-IMAGE = "https://raw.githubusercontent.com/poudelroshan/BOTVID-19/master/images/out.jpg"
 
 app = Flask(__name__)
 bot = authenticate.verify_bot_access()
@@ -11,10 +10,6 @@ bot = authenticate.verify_bot_access()
 def send_message(recipient_id, response):
     bot.send_text_message(recipient_id, response)
     return "Message Sent!"
-
-# Sends images to recipient_id using Pymessenger API
-def send_image(recipient_id, image_url=IMAGE):
-    bot.send_image_url(recipient_id, image_url)
 
 # Fetches the data from database for the user
 def get_message():
@@ -82,7 +77,7 @@ def receive_message():
             unsubscribe(user_id)
         elif message == "update":
             response = get_message()
-            send_image(user_id)
+            send_message(user_id, response)
             send_message(user_id, "Above data was scraped from https://www.worldometers.info/coronavirus/country/us/")
         elif message.split()[0] == "sudo" and authenticate.is_admin(user_id):
             # Allow for admins to check bot status using messenger
