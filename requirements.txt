@@ -13,6 +13,7 @@ tabulate==0.8.7
 mysql-connector-python==8.0.19
 pandas==1.0.3
 imgkit==1.0.2
+wkhtmltopdf==0.2
 
 
 
