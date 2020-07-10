@@ -62,6 +62,7 @@ def add_state_data(state_data):
     prev_deaths = 0
     curr_deaths = state_data[2]
     cursor.execute("INSERT INTO data_table VALUES(%s, %s, %s, %s, %s, %s)",(state, abbr, prev_cases, curr_cases, prev_deaths, curr_deaths))
+    connection.commit()
     print(state," Added to the Database")
 
     
