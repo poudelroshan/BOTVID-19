@@ -10,11 +10,13 @@ def corona():
     soup = BeautifulSoup(page_response.content, "html.parser")
     table_body = soup.find('tbody')
     rows = table_body.find_all('tr')
+    
     data_list = []
     for row in rows:
         cols = row.find_all('td')
         cols = [x.text.strip() for x in cols]
-        data_list.append([cols[0], cols[1], cols[3]])
+        data_list.append([cols[1], cols[2], cols[4]])
+    
     for state_data in data_list:
         update_database(state_data)
         
